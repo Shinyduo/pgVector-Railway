@@ -12,3 +12,9 @@ RUN apt-get update && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+COPY init.sql /init.sql
+
+# Entrypoint script
+COPY custom-entrypoint.sh /docker-entrypoint-init.d/custom-entrypoint.sh
+RUN chmod +x /docker-entrypoint-init.d/custom-entrypoint.sh
